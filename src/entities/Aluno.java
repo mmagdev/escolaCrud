@@ -1,6 +1,7 @@
 package entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 import java.util.UUID;
 
 public class Aluno {
@@ -10,7 +11,7 @@ public class Aluno {
 	private String nomeMae;
 	private String curso;
 	private String telefone;
-	private LocalDateTime dataMatricula;
+	private LocalDate dataMatricula;
 	
 	
 	public UUID getIdMatricula() {
@@ -43,10 +44,10 @@ public class Aluno {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public LocalDateTime getDataMatricula() {
+	public LocalDate getDataMatricula() {
 		return dataMatricula;
 	}
-	public void setDataMatricula(LocalDateTime dataMatricula) {
+	public void setDataMatricula(LocalDate dataMatricula) {
 		this.dataMatricula = dataMatricula;
 	}
 	

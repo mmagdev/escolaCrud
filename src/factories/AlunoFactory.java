@@ -17,7 +17,7 @@ public class AlunoFactory {
 		try {
 			
 			//Variáveis para conexão
-			var host = "jdbc:postgresql:5432/bd_escolaCrud";
+			var host = "jdbc:postgresql://localhost:5432/bd_escolaCrud";
 			var user = "postgres";
 			var pass = "coti";
 			

@@ -1,6 +1,7 @@
 package repositories;
 
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.util.UUID;
 
 import entities.Aluno;
 import factories.AlunoFactory;
@@ -24,9 +25,14 @@ public class AlunoRepository {
 			var factory = new AlunoFactory();
 			var connection = factory.obterConexao();
 			
+			//GERA O UUID PARA O ALUNO
+	        aluno.setIdMatricula(UUID.randomUUID());
+	        System.out.println("UUID gerado: " + aluno.getIdMatricula());
+
+			
 			//Gerando o script para adicionar um aluno ao banco de dados
 			var sql = """
-					INSERT INTO alunos (nome, nome_mae, curso, telefone, data_matricula
+					INSERT INTO alunos (nome, nome_mae, curso, telefone, data_matricula)
 					VALUES (?, ?, ?, ?, ?)
 					
 					""";
@@ -37,7 +43,9 @@ public class AlunoRepository {
 			statement.setString(2, aluno.getNomeMae());
 			statement.setString(3, aluno.getCurso());
 			statement.setString(4,  aluno.getTelefone());
-			statement.setTimestamp(5, Timestamp.valueOf(aluno.getDataMatricula()));
+			statement.setDate(5, Date.valueOf(aluno.getDataMatricula()));
+			
+			statement.executeUpdate();
 			
 			connection.close();
 			
@@ -47,6 +55,7 @@ public class AlunoRepository {
 		}
 		catch (Exception e){
 			System.out.println("\nNão foi possível matricular o aluno. Revise os dados e tente novamente.");
+			e.printStackTrace();
 			
 		}
 		
